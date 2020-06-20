@@ -11,6 +11,6 @@ Paragraph with content
 code snippet
 ```
 
-## references
+## References
 
 - [Sample](https://github.com)
