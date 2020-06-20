@@ -1,6 +1,5 @@
 # JWT
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/umluizlima/study-notes/jwt?color=success)
-![GitHub followers](https://img.shields.io/github/followers/umluizlima?label=Follow&style=social)
+[![Follow author](https://img.shields.io/static/v1?style=flat&color=blue&label=note%20by&message=umluizlima)](https://github.com/umluizlima)
 > JWTs is an easy and safe way to implement authorization
 
 ## Content
