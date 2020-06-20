@@ -1,7 +1,7 @@
 # title
 > TL;DR
 
-## content
+## Content
 
 Paragraph with content
 
