@@ -34,7 +34,37 @@ Bindings are rules used by exchanges to route messages. The **routing key** attr
 - **Header** uses the message header instead of its routing key;
 - **Default** (nameless) sends message to queue where `routing key == queue name`;
 
+## Example
+
+```python
+$ pip install pika
+$ python
+>>> import pika
+>>> connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+>>> channel = connection.channel()
+```
+The exchange, queue and binding between them can be created programmatically:
+```python
+>>> channel.exchange_declare(exchange='my_exchange', exchange_type='fanout')
+>>> result = channel.queue_declare(queue='my_queue', durable=True)
+>>> queue_name = result.method.queue
+>>> channel.queue_bind(exchange='my_exchange', queue=queue_name)
+```
+The exchange must be passed to publish a message. So does the routing key, even if not used:
+```python
+>>> message = "There's a snake in my boot!"
+>>> channel.basic_publish(exchange='my_exchange', routing_key='', body=message)
+```
+Consumption can be triggered by specifying the queue and passing a callback function:
+```python
+>>> def callback(ch, method, properties, body):
+>>>     ...
+>>> channel.basic_consume(queue=queue_name, on_message_callback=callback, auto_ack=True)
+```
+
+
 ## References
 
 - [RabbitMQ in 5 Minutes](https://www.youtube.com/watch?v=deG25y_r6OY)
 - [AMQP Concepts](https://www.rabbitmq.com/tutorials/amqp-concepts.html)
+- [RabbitMQ Tutorials](https://www.rabbitmq.com/getstarted.html)
